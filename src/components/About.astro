@@ -1,0 +1,111 @@
+---
+// src/components/About.astro
+---
+
+<section id="chi-siamo" class="relative bg-[#161E28] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 border-b border-white/5 select-none overflow-hidden">
+  
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#C97055]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-[1300px] mx-auto">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      
+      <!-- COLONNA FOTOGRAFICA: Dettaglio bagno + Badge concreto -->
+      <div class="about-reveal opacity-0 lg:col-span-5 relative order-2 lg:order-1">
+        <div class="group relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/5] bg-[#111820] shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=85" 
+            alt="Dettaglio finiture e posa rubinetteria in bagno finito"
+            class="w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out will-change-transform"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#111820]/80 via-transparent to-transparent"></div>
+        </div>
+        
+        <!-- Badge con garanzia operativa: nascosto su mobile, visibile da tablet/desktop -->
+        <div class="about-badge opacity-0 hidden sm:block sm:absolute sm:-bottom-6 sm:-right-8 bg-[#111820]/95 backdrop-blur-xl border border-[#C97055]/30 p-6 rounded-2xl shadow-2xl max-w-xs transition-transform duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C97055] animate-pulse"></span>
+            <span class="text-[9px] uppercase tracking-[0.25em] text-[#D98B6E] font-medium font-sans">Garanzia Diretta</span>
+          </div>
+          <span class="block font-serif text-2xl text-white mb-1.5">Un solo responsabile</span>
+          <p class="font-sans text-xs text-white/65 font-light leading-relaxed">
+            Parli sempre con chi posa le lastre e coordina l'idraulico in casa tua, non con venditori o intermediari.
+          </p>
+        </div>
+      </div>
+
+      <!-- COLONNA TESTI: Copy diretto e trasparente -->
+      <div class="lg:col-span-7 flex flex-col justify-center order-1 lg:order-2">
+        
+        <h2 class="about-reveal opacity-0 font-serif text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.08] mb-6">
+          Nessun intermediario, <br />
+          <span class="font-serif italic font-light text-[#D98B6E]">lavoriamo noi in cantiere.</span>
+        </h2>
+
+        <p class="about-reveal opacity-0 font-sans text-sm sm:text-base text-white/80 font-light leading-relaxed mb-5">
+          Il problema principale delle ristrutturazioni è il rimpallo di colpe: l'idraulico accusa il piastrellista, l'impresa non risponde al telefono e i tempi raddoppiano. Con Materia Due questo non succede perché la gestione tecnica è centralizzata.
+        </p>
+
+        <p class="about-reveal opacity-0 font-sans text-xs sm:text-sm text-white/65 font-light leading-relaxed mb-8">
+          Prepariamo il massetto con pendenze verificate al millimetro, impermeabilizziamo la zona doccia con membrane continue certificate e tagliamo le lastre di grandi formati (fino a 120×280 cm) direttamente sul posto con banchi da taglio ad acqua, evitando angolari in plastica e scheggiature.
+        </p>
+
+        <!-- Schede tecniche concrete -->
+        <div class="about-reveal opacity-0 grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-white/10 font-sans">
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-medium text-white mb-1.5 flex items-center gap-2">
+              <span class="w-1 h-3 bg-[#C97055] rounded-full"></span>
+              Tagli e Fughe Millimetriche
+            </h4>
+            <p class="text-xs text-white/55 font-light leading-relaxed">
+              Angoli a Jolly a 45° rifiniti a mano e cunei livellanti per superfici piane, senza denti tra le mattonelle.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+            <h4 class="text-sm font-medium text-white mb-1.5 flex items-center gap-2">
+              <span class="w-1 h-3 bg-[#D98B6E] rounded-full"></span>
+              Collaudo Idraulico Scritto
+            </h4>
+            <p class="text-xs text-white/55 font-light leading-relaxed">
+              Test di tenuta in pressione prima di posare le lastre e certificazione DM 37/08 dell'impianto idrico-sanitario.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const reveals = entry.target.querySelectorAll('.about-reveal');
+        reveals.forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add('animate-fade-in-up');
+            el.classList.remove('opacity-0');
+          }, index * 120);
+        });
+
+        const badge = entry.target.querySelector('.about-badge');
+        if (badge) {
+          setTimeout(() => {
+            badge.classList.add('animate-fade-in-up');
+            badge.classList.remove('opacity-0');
+          }, 350);
+        }
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  const section = document.querySelector('#chi-siamo');
+  if (section) observer.observe(section);
+</script>

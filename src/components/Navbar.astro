@@ -1,0 +1,131 @@
+---
+// src/components/Navbar.astro
+const navItems = [
+  { label: 'Servizi', href: '#servizi' },
+  { label: 'Chi Siamo', href: '#chi-siamo' },
+  { label: 'Realizzazioni', href: '#progetti' },
+  { label: 'Metodo', href: '#metodo' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none px-4 sm:px-8 pt-3 sm:pt-4">
+  <!-- BARRA UNICA CONTINUA -->
+  <div class="max-w-[1340px] mx-auto bg-[#161E28]/90 backdrop-blur-2xl border border-white/10 rounded-2xl sm:rounded-full px-5 sm:px-8 py-3.5 sm:py-3 flex items-center justify-between shadow-2xl">
+    
+    <!-- Logo Ingrandito e Nitido -->
+    <a href="/" class="flex items-center gap-3 shrink-0 py-1">
+      <img 
+        src="/logo.svg" 
+        alt="Materia Due" 
+        class="h-8 sm:h-10 md:h-11 w-auto block object-contain" 
+        loading="eager"
+        decoding="sync"
+      />
+    </a>
+
+    <!-- Menu Centrale Desktop -->
+    <nav class="hidden lg:flex items-center gap-8">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="text-xs font-medium tracking-[0.22em] uppercase text-white/70 hover:text-white transition-colors duration-200"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Tasto CTA Desktop & Tasto Hamburger Mobile -->
+    <div class="flex items-center gap-3">
+      <a 
+        href="#preventivo" 
+        class="hidden sm:inline-flex items-center gap-2.5 bg-[#C97055] hover:bg-[#A0503A] text-white py-2.5 px-6 rounded-full text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 shadow-lg shadow-[#C97055]/20 hover:scale-105"
+      >
+        <span>Preventivo</span>
+        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none">
+          <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <!-- Hamburger button per Mobile -->
+      <button 
+        id="menu-btn" 
+        aria-label="Menu" 
+        class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white flex flex-col justify-center items-center gap-1.5 w-11 h-11 transition-all"
+      >
+        <span id="bar-top" class="w-5 h-[2px] bg-white transition-transform duration-300"></span>
+        <span id="bar-bottom" class="w-5 h-[2px] bg-white transition-transform duration-300"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- MENU MOBILE FULL SCREEN OVERLAY -->
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 z-40 bg-[#111820]/98 backdrop-blur-3xl flex flex-col justify-between px-8 pt-32 pb-12 opacity-0 pointer-events-none transition-all duration-400 ease-out lg:hidden"
+  >
+    <div class="flex flex-col gap-6">
+      <span class="text-[10px] tracking-[0.3em] uppercase text-[#D98B6E] font-medium font-sans">
+        Navigazione
+      </span>
+      <nav class="flex flex-col gap-5">
+        {navItems.map((item, idx) => (
+          <a 
+            href={item.href} 
+            class="mobile-nav-link font-serif text-3xl sm:text-4xl text-white/85 hover:text-[#D98B6E] transition-colors py-1 flex items-center justify-between border-b border-white/5"
+          >
+            <span>{item.label}</span>
+            <span class="text-xs font-mono text-white/30">0{idx + 1}</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Sezione inferiore del menu -->
+    <div class="flex flex-col gap-6 pt-6 border-t border-white/10">
+      <a 
+        href="#preventivo" 
+        class="mobile-nav-link w-full text-center bg-[#C97055] hover:bg-[#A0503A] text-white text-xs font-semibold uppercase tracking-[0.2em] py-4 rounded-full transition-all shadow-xl"
+      >
+        Richiedi un Preventivo
+      </a>
+      
+      <div class="flex items-center justify-between text-xs text-white/50 font-sans">
+        <span>+39 041 000 0000</span>
+        <span>info@materiadue.it</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const barTop = document.getElementById('bar-top');
+  const barBottom = document.getElementById('bar-bottom');
+  const links = document.querySelectorAll('.mobile-nav-link');
+
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      mobileMenu?.classList.remove('opacity-0', 'pointer-events-none');
+      mobileMenu?.classList.add('opacity-100', 'pointer-events-auto');
+      barTop?.classList.add('rotate-45', 'translate-y-[4.5px]');
+      barBottom?.classList.add('-rotate-45', '-translate-y-[4.5px]');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto');
+      barTop?.classList.remove('rotate-45', 'translate-y-[4.5px]');
+      barBottom?.classList.remove('-rotate-45', '-translate-y-[4.5px]');
+      document.body.style.overflow = '';
+    }
+  }
+
+  menuBtn?.addEventListener('click', toggleMenu);
+  links.forEach(l => l.addEventListener('click', toggleMenu));
+</script>

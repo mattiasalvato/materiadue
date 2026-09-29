@@ -1,0 +1,69 @@
+---
+// src/components/Faq.astro
+
+const faqs = [
+  {
+    q: "Quanto tempo richiede la ristrutturazione completa del bagno?",
+    a: "Un rifacimento completo richiede mediamente tra i 7 e i 10 giorni lavorativi, a seconda della dimensione e dei tempi di asciugatura del massetto rapido prima della posa delle grandi lastre."
+  },
+  {
+    q: "Come gestite la polvere e la protezione della casa durante i lavori?",
+    a: "Prima di avviare la demolizione, sigilliamo gli accessi alle altre stanze con teli antipolvere e proteggiamo i pavimenti di passaggio con teli in feltro assorbente e pannelli antiurto."
+  },
+  {
+    q: "Posso usufruire delle detrazioni fiscali?",
+    a: "Sì, il rifacimento del bagno con rifacimento degli impianti rientra nella manutenzione straordinaria, permettendo l'accesso alla detrazione fiscale per ristrutturazione edilizia. Forniamo tutta la documentazione per i bonifici parlanti."
+  },
+  {
+    q: "È possibile posare le grandi lastre sopra un pavimento già esistente?",
+    a: "Sì, se il fondo esistente è solido, planare e privo di umidità di risalita. In sede di sopralluogo verifichiamo le quote delle porte e la planarità per capire se sovrapporre le lastre da 6 mm o demolire il vecchio massetto."
+  }
+];
+---
+
+<section id="faq" class="relative bg-[#111820] py-16 sm:py-28 px-5 sm:px-8 border-b border-white/5 select-none">
+  <div class="max-w-[900px] mx-auto">
+    
+    <div class="reveal-faq opacity-0 text-center mb-10 sm:mb-16">
+      <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-[1.1] mb-3 sm:mb-4">
+        Domande Frequenti
+      </h2>
+      <p class="font-sans text-xs sm:text-sm font-light text-white/60">
+        Informazioni chiare su tempi, detrazioni e organizzazione del cantiere.
+      </p>
+    </div>
+
+    <div class="reveal-faq opacity-0 space-y-3 sm:space-y-4">
+      {faqs.map((item) => (
+        <details class="group bg-[#161E28] border border-white/10 rounded-xl overflow-hidden transition-all duration-300 open:border-[#C97055]/50">
+          <summary class="flex items-center justify-between p-4 sm:p-6 cursor-pointer list-none select-none">
+            <span class="font-serif text-base sm:text-lg md:text-xl text-white pr-3 leading-snug">
+              {item.q}
+            </span>
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#111820] flex items-center justify-center text-[#D98B6E] group-open:rotate-180 transition-transform duration-300 shrink-0 text-xs sm:text-sm">
+              ↓
+            </span>
+          </summary>
+          <div class="px-4 pb-4 sm:px-6 sm:pb-6 pt-1 sm:pt-2 font-sans text-xs sm:text-sm text-white/65 font-light leading-relaxed border-t border-white/5">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+        entry.target.classList.remove('opacity-0');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal-faq').forEach((el) => observer.observe(el));
+</script>

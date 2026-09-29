@@ -1,0 +1,113 @@
+---
+// src/components/Projects.astro
+
+const projects = [
+  {
+    title: "Residenza Laguna",
+    location: "Venezia Centro",
+    surface: "Gres 120×280 Statuario Opaco",
+    scope: "Rifacimento completo bagno padronale",
+    image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1600&q=85",
+    colClass: "lg:col-span-7",
+  },
+  {
+    title: "Attico Riviera",
+    location: "Mestre",
+    surface: "Calce & Walk-in filomuro",
+    scope: "Doppio lavabo e doccia a nicchia",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=85",
+    colClass: "lg:col-span-5",
+  },
+  {
+    title: "Villa Sile",
+    location: "Treviso",
+    surface: "Pietra Piasentina fiammata",
+    scope: "Zona doccia e pavimentazione continua",
+    image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=85",
+    colClass: "lg:col-span-5",
+  },
+  {
+    title: "Casa San Marco",
+    location: "Venezia",
+    surface: "Grandi lastre 120×120 effetto resina",
+    scope: "Ristrutturazione totale e sanitari sospesi",
+    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=85",
+    colClass: "lg:col-span-7",
+  },
+];
+---
+
+<section id="progetti" class="relative bg-[#111820] py-16 sm:py-28 px-5 sm:px-8 border-b border-white/5 select-none">
+  <div class="max-w-[1300px] mx-auto">
+    
+    <!-- Intestazione pulita e bilanciata -->
+    <div class="reveal-project opacity-0 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 sm:mb-16">
+      <div class="max-w-xl">
+        <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.08]">
+          Realizzazioni recenti, <br />
+          <span class="font-serif italic font-light text-[#D98B6E]">cura di ogni dettaglio.</span>
+        </h2>
+      </div>
+
+      <p class="font-sans text-xs sm:text-sm font-light text-white/60 max-w-md leading-relaxed">
+        Dettagli di posa, raccordi millimetrici e materiali selezionati per durare nel tempo.
+      </p>
+    </div>
+
+    <!-- Griglia a 12 colonne con altezze coerenti -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+      {projects.map((item) => (
+        <article class={`reveal-project opacity-0 group relative rounded-2xl overflow-hidden bg-[#161E28] border border-white/10 hover:border-[#C97055]/50 transition-all duration-500 min-h-[360px] sm:min-h-[420px] lg:h-[460px] flex flex-col justify-end p-6 sm:p-8 ${item.colClass}`}>
+          
+          <!-- Immagine di fondo a copertura totale -->
+          <div class="absolute inset-0 z-0 overflow-hidden">
+            <img 
+              src={item.image} 
+              alt={item.title}
+              class="w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform"
+              loading="lazy"
+            />
+            <!-- Gradiente scuro sul fondo per contrasto nitido dei testi -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111820] via-[#111820]/60 to-transparent"></div>
+          </div>
+
+          <!-- Dati del progetto sovrapposti -->
+          <div class="relative z-10">
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="text-[10px] tracking-[0.22em] uppercase text-[#D98B6E] font-medium font-sans">
+                {item.location}
+              </span>
+              <span class="text-[10px] tracking-wider text-white/50 font-mono">
+                {item.surface}
+              </span>
+            </div>
+
+            <h3 class="font-serif text-2xl sm:text-3xl text-white tracking-tight mb-1.5 leading-snug">
+              {item.title}
+            </h3>
+
+            <p class="font-sans text-xs sm:text-sm text-white/70 font-light">
+              {item.scope}
+            </p>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+        entry.target.classList.remove('opacity-0');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal-project').forEach((el) => observer.observe(el));
+</script>

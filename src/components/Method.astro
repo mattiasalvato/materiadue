@@ -1,0 +1,84 @@
+---
+// src/components/Method.astro
+
+const steps = [
+  {
+    num: "01",
+    title: "Sopralluogo Tecnico",
+    desc: "Verifichiamo quote, pendenze scarichi e massetto sul posto, valutando la fattibilità a norma.",
+  },
+  {
+    num: "02",
+    title: "Prezzo Bloccato",
+    desc: "Preventivo analitico: demolizioni, fornitura lastre, impermeabilizzazioni e manodopera inclusi.",
+  },
+  {
+    num: "03",
+    title: "Posa e Cantiere",
+    desc: "Un solo referente coordina il cantiere. Posa con livellatori millimetrici e pulizia quotidiana.",
+  },
+  {
+    num: "04",
+    title: "Collaudo Finale",
+    desc: "Test di tenuta scarichi, verifica pendenze e rilascio delle dichiarazioni di conformità.",
+  }
+];
+---
+
+<section id="metodo" class="relative bg-[#111820] py-16 sm:py-28 px-5 sm:px-8 border-b border-white/5">
+  <div class="max-w-[1300px] mx-auto">
+    
+    <div class="reveal-step opacity-0 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-20">
+      <div class="max-w-xl">
+        <h2 class="font-serif text-2xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.1]">
+          Un percorso chiaro, <br class="hidden sm:block" />
+          <span class="font-serif italic font-light text-[#D98B6E]">dall'inizio al collaudo.</span>
+        </h2>
+      </div>
+
+      <p class="font-sans text-xs sm:text-sm font-light text-white/60 max-w-md leading-relaxed">
+        Pianificazione per rispettare i tempi ed evitare disagi abitativi.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {steps.map((step, idx) => (
+        <div class="reveal-step opacity-0 flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-[#161E28] border border-white/10">
+          <div>
+            <span class="block font-serif text-3xl sm:text-5xl text-[#C97055] font-light mb-3 sm:mb-5">
+              {step.num}
+            </span>
+
+            <h3 class="font-serif text-lg sm:text-2xl text-white tracking-tight mb-2 sm:mb-3">
+              {step.title}
+            </h3>
+
+            <p class="font-sans text-xs sm:text-sm font-light text-white/65 leading-relaxed">
+              {step.desc}
+            </p>
+          </div>
+
+          <div class="mt-6 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] text-white/40 font-mono">
+            <span>FASE {idx + 1}/4</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C97055]"></span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+        entry.target.classList.remove('opacity-0');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal-step').forEach((el) => observer.observe(el));
+</script>

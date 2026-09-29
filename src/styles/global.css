@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-t: #C97055;
+  --color-t-light: #D98B6E;
+  --color-t-deep: #A0503A;
+  --color-s: #3D4F63;
+  --color-s-light: #5A6E83;
+  --color-brand-dark: #161E28;
+  --color-brand-mid: #1F2C3A;
+  --color-brand-page: #111820;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", sans-serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }

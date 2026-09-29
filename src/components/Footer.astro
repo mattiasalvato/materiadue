@@ -1,0 +1,31 @@
+---
+// src/components/Footer.astro
+import Logo from './Logo.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-[#161E28] text-white py-16 px-6 sm:px-8 border-t border-white/5 select-none">
+  <div class="max-w-[1300px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+    
+    <div class="flex flex-col gap-3">
+      <Logo size="sm" />
+      <p class="text-xs text-white/45 max-w-sm mt-1">
+        Rifacimento bagni, grandi lastre e pavimentazioni artigianali per residenze private e spazi commerciali.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-8 text-[11px] uppercase tracking-[0.2em] text-white/55">
+      <a href="#servizi" class="hover:text-white transition-colors">Servizi</a>
+      <a href="#progetti" class="hover:text-white transition-colors">Realizzazioni</a>
+      <a href="#metodo" class="hover:text-white transition-colors">Metodo</a>
+      <a href="#preventivo" class="hover:text-white transition-colors">Preventivo</a>
+    </div>
+
+    <div class="flex flex-col md:items-end text-xs text-white/40 font-mono gap-1">
+      <span>© {currentYear} Materia Due · P.IVA 00000000000</span>
+      <span>Verona · Vicenza · Padova</span>
+    </div>
+
+  </div>
+</footer>

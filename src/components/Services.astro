@@ -1,0 +1,89 @@
+---
+// src/components/Services.astro
+
+const services = [
+  {
+    title: "Rifacimento Bagno Completo",
+    desc: "Smantellamento, impianti idraulici a norma, doccia a filo pavimento e sanitari. Un solo interlocutore dall'inizio alla fine.",
+    image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    title: "Posa Grandi Lastre",
+    desc: "Lastre in gres fino a 120×280 cm con livellatori a vite. Giunti e fughe impercettibili per superfici continue e resistenti.",
+    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    title: "Pavimentazioni Continue",
+    desc: "Gres porcellanato, microcemento e parquet con raccordi complanari. Nessun gradino né dislivello tra una stanza e l'altra.",
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85",
+  }
+];
+---
+
+<section id="servizi" class="relative bg-[#111820] py-16 sm:py-28 px-5 sm:px-8 border-b border-white/5">
+  <div class="max-w-[1300px] mx-auto">
+    
+    <div class="reveal-item opacity-0 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-16">
+      <div class="max-w-xl">
+        <h2 class="font-serif text-2xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.1]">
+          Lavori a regola d'arte, <br class="hidden sm:block" />
+          <span class="font-serif italic font-light text-[#D98B6E]">senza imprevisti.</span>
+        </h2>
+      </div>
+
+      <p class="font-sans text-xs sm:text-sm font-light text-white/60 max-w-md leading-relaxed">
+        Lavoriamo direttamente con il committente o con il progettista. Tempi certi concordati e preventivo trasparente voce per voce.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
+      {services.map((item) => (
+        <article class="reveal-item opacity-0 group relative rounded-2xl overflow-hidden bg-[#161E28] border border-white/10 flex flex-col justify-end min-h-[380px] sm:min-h-[500px] p-6 sm:p-8">
+          
+          <div class="absolute inset-0 z-0">
+            <img 
+              src={item.image} 
+              alt={item.title}
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111820] via-[#111820]/80 to-[#111820]/30"></div>
+          </div>
+
+          <div class="relative z-10">
+            <h3 class="font-serif text-xl sm:text-3xl text-white tracking-tight mb-2 sm:mb-3">
+              {item.title}
+            </h3>
+
+            <p class="font-sans text-xs sm:text-sm font-light text-white/70 leading-relaxed mb-4 sm:mb-6">
+              {item.desc}
+            </p>
+
+            <a href="#preventivo" class="inline-flex items-center gap-2 text-[#D98B6E] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em]">
+              <span>Richiedi info</span>
+              <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none">
+                <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+        entry.target.classList.remove('opacity-0');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal-item').forEach((el) => observer.observe(el));
+</script>

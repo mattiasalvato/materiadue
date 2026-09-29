@@ -1,0 +1,160 @@
+---
+// src/components/Contact.astro
+---
+
+<section id="preventivo" class="relative bg-[#111820] py-16 sm:py-28 px-5 sm:px-8 border-b border-white/5 select-none">
+  <div class="max-w-[1300px] mx-auto">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      
+      <!-- COLONNA SINISTRA: Informazioni e rassicurazioni -->
+      <div class="reveal-contact opacity-0 lg:col-span-5 flex flex-col justify-between">
+        <div>
+          <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.08] mb-4 sm:mb-6">
+            Iniziamo dal tuo <br />
+            <span class="font-serif italic font-light text-[#D98B6E]">prossimo spazio.</span>
+          </h2>
+
+          <p class="font-sans text-xs sm:text-sm font-light text-white/65 leading-relaxed mb-8 sm:mb-10">
+            Richiedi un sopralluogo tecnico senza impegno. Analizziamo lo stato degli impianti e delle superfici per consegnarti un preventivo dettagliato a prezzo bloccato.
+          </p>
+
+          <!-- Dettagli di contatto rapido -->
+          <div class="flex flex-col gap-4 sm:gap-5 pt-6 sm:pt-8 border-t border-white/10">
+            <div>
+              <span class="block text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/40 mb-1">Telefono e WhatsApp</span>
+              <a href="tel:+390410000000" class="font-serif text-xl sm:text-2xl text-white hover:text-[#D98B6E] transition-colors">
+                +39 041 000 0000
+              </a>
+            </div>
+
+            <div>
+              <span class="block text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/40 mb-1">Email Diretta</span>
+              <a href="mailto:info@materiadue.it" class="font-sans text-xs sm:text-sm text-white/80 hover:text-white transition-colors">
+                info@materiadue.it
+              </a>
+            </div>
+
+            <div>
+              <span class="block text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/40 mb-1">Area di Intervento</span>
+              <p class="font-sans text-xs sm:text-sm text-white/80">
+                Verona, Vicenza e Padova e province
+              </p>
+            </div>
+          </div>
+        </div>
+
+      
+      </div>
+
+      <!-- COLONNA DESTRA: Modulo di richiesta pulito -->
+      <div class="reveal-contact opacity-0 lg:col-span-7 bg-[#161E28] border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl">
+        <form class="space-y-4 sm:space-y-6" onsubmit="event.preventDefault();">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div>
+              <label class="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 mb-2" for="nome">
+                Nome e Cognome *
+              </label>
+              <input 
+                type="text" 
+                id="nome" 
+                required 
+                placeholder="es. Marco Rossi"
+                class="w-full bg-[#111820] border border-white/15 focus:border-[#C97055] rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-white placeholder-white/20 outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 mb-2" for="telefono">
+                Telefono *
+              </label>
+              <input 
+                type="tel" 
+                id="telefono" 
+                required 
+                placeholder="es. 340 1234567"
+                class="w-full bg-[#111820] border border-white/15 focus:border-[#C97055] rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-white placeholder-white/20 outline-none transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div>
+              <label class="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 mb-2" for="citta">
+                Comune / Zona *
+              </label>
+              <input 
+                type="text" 
+                id="citta" 
+                required 
+                placeholder="es. Mestre"
+                class="w-full bg-[#111820] border border-white/15 focus:border-[#C97055] rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-white placeholder-white/20 outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 mb-2" for="servizio">
+                Tipo di Lavoro
+              </label>
+              <select 
+                id="servizio"
+                class="w-full bg-[#111820] border border-white/15 focus:border-[#C97055] rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-white outline-none transition-colors"
+              >
+                <option value="bagno">Rifacimento Bagno Completo</option>
+                <option value="lastre">Posa Grandi Lastre</option>
+                <option value="pavimenti">Pavimentazioni Continue</option>
+                <option value="altro">Altro intervento su misura</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 mb-2" for="messaggio">
+              Dettagli dell'immobile o esigenze particolari
+            </label>
+            <textarea 
+              id="messaggio" 
+              rows="4" 
+              placeholder="Indica dimensioni indicative, piano dell'abitazione o tempistiche desiderate..."
+              class="w-full bg-[#111820] border border-white/15 focus:border-[#C97055] rounded-lg px-4 py-3 text-base sm:text-sm text-white placeholder-white/20 outline-none transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
+            <span class="text-[10px] sm:text-[11px] text-white/40 text-center sm:text-left">
+              I dati saranno trattati esclusivamente per il preventivo richiesto.
+            </span>
+
+            <button 
+              type="submit" 
+              class="group w-full sm:w-auto inline-flex justify-center items-center gap-3 bg-[#C97055] hover:bg-[#A0503A] text-white text-[11px] font-semibold uppercase tracking-[0.2em] px-8 py-4 rounded-full transition-all duration-300 shadow-xl shadow-[#C97055]/20 hover:scale-105 shrink-0"
+            >
+              <span>Invia Richiesta</span>
+              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform duration-300" viewBox="0 0 16 16" fill="none">
+                <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+        entry.target.classList.remove('opacity-0');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal-contact').forEach((el) => observer.observe(el));
+</script>

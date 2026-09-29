@@ -1,0 +1,50 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  showText?: boolean;
+}
+
+const { size = 'md', showText = true } = Astro.props;
+
+const sizes = {
+  sm: { w: 32, h: 27, text: 'text-sm', sub: 'text-[9px]', line: 'w-4' },
+  md: { w: 46, h: 39, text: 'text-lg', sub: 'text-[10px]', line: 'w-6' },
+  lg: { w: 100, h: 84, text: 'text-3xl', sub: 'text-xs', line: 'w-10' },
+}[size];
+---
+
+<a href="/" class="inline-flex items-center gap-3.5 group select-none">
+  <svg 
+    width={sizes.w} 
+    height={sizes.h} 
+    viewBox="0 0 300 252" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    class="shrink-0 transition-transform duration-300 group-hover:scale-105"
+  >
+    <polygon points="51,6 87,27 87,69 51,90 15,69 15,27" stroke="#C97055" stroke-width="3.5"/>
+    <polygon points="138,6 174,27 174,69 138,90 102,69 102,27" stroke="#C97055" stroke-width="3.5" opacity="0.4"/>
+    <polygon points="225,6 261,27 261,69 225,90 189,69 189,27" stroke="#C97055" stroke-width="3.5"/>
+    <polygon points="93,54 129,75 129,117 93,138 57,117 57,75" stroke="#C97055" stroke-width="3.5" opacity="0.3"/>
+    <polygon points="180,54 216,75 216,117 180,138 144,117 144,75" fill="#3D4F63" stroke="#C97055" stroke-width="3.5" opacity="0.55"/>
+    <polygon points="267,54 303,75 303,117 267,138 231,117 231,75" stroke="#C97055" stroke-width="3.5" opacity="0.3"/>
+    <polygon points="51,114 87,135 87,177 51,198 15,177 15,135" stroke="#C97055" stroke-width="3.5" opacity="0.5"/>
+    <polygon points="138,114 174,135 174,177 138,198 102,177 102,135" stroke="#C97055" stroke-width="3.5" opacity="0.4"/>
+    <polygon points="225,114 261,135 261,177 225,198 189,177 189,135" stroke="#C97055" stroke-width="3.5" opacity="0.5"/>
+  </svg>
+
+  {showText && (
+    <div class="flex flex-col items-center leading-none">
+      <span class={`font-sans tracking-[0.38em] uppercase text-white font-normal ${sizes.text}`}>
+        Materia
+      </span>
+      <div class="flex items-center gap-1.5 w-full mt-1.5">
+        <span class={`h-[1px] ${sizes.line} bg-terracotta opacity-60`}></span>
+        <span class={`font-sans tracking-[0.45em] uppercase text-terracotta-light ${sizes.sub}`}>
+          Due
+        </span>
+        <span class={`h-[1px] ${sizes.line} bg-terracotta opacity-60`}></span>
+      </div>
+    </div>
+  )}
+</a>
